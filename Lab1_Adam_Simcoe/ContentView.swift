@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var correctGuesses = 0
     @State private var wrongGuesses = 0
     @State private var attempts = 0
+    @State private var showScore = false
     
     var body: some View {
         VStack {
@@ -30,6 +31,16 @@ struct ContentView: View {
                     Text("Not Prime")
                 }
             }
+            
+            // Checkmark here
+        }
+        
+        .alert(isPresented: $showScore) {
+            Alert(
+                title: Text("Your Score:"),
+                message: Text("Correct Guesses: \(correctGuesses)\nWrong Guesses: \(wrongGuesses)"),
+                dismissButton: .default(Text("Ok"))
+            )
         }
     }
 }
