@@ -19,7 +19,7 @@ struct ContentView: View {
         VStack(spacing: 40) {
             
             Text("\(currentNum)")
-                .font(.system(size: 80, weight: .bold))
+                .font(.system(size: 120, weight: .bold))
                 .padding()
             
             VStack(spacing: 20) {
@@ -58,7 +58,10 @@ struct ContentView: View {
             
             // Display checkmark or x mark based on user's input
             Image(systemName: isGuessCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .resizable()
+                .frame(width: 150, height: 150)
                 .foregroundColor(isGuessCorrect ? .green : .red)
+                .padding()
                 .opacity(showResult ? 1 : 0)
         }
         
