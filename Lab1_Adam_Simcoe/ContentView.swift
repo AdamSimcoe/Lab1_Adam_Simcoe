@@ -30,8 +30,9 @@ struct ContentView: View {
                     checkAnswer(userInput: true)
                 }) {
                     Text("Prime")
-                        .font(.system(size: 60, weight: .semibold))
+                        .font(.system(size: 50, weight: .semibold))
                         .frame(width: 250, height: 100)
+                        // Changes button colour to gray if user input is disabled
                         .background(isGuessAllowed ? Color.purple : Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(20)
@@ -44,6 +45,12 @@ struct ContentView: View {
                     checkAnswer(userInput: false)
                 }) {
                     Text("Not Prime")
+                        .font(.system(size: 50, weight: .semibold))
+                        .frame(width: 250, height: 100)
+                        // Changes button colour to gray if user input is disabled
+                        .background(isGuessAllowed ? Color.purple : Color.gray)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
                 // Disable user input after button is pressed
                 .disabled(!isGuessAllowed)
