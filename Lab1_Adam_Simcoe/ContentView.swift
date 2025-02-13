@@ -10,6 +10,7 @@ struct ContentView: View {
     @State private var wrongGuesses = 0
     @State private var attempts = 0
     @State private var showScore = false
+    @State private var isGuessCorrect = false
     
     var body: some View {
         VStack {
@@ -21,12 +22,14 @@ struct ContentView: View {
                 // Prime Button
                 Button(action: {
                     // Check user input
+                    checkAnswer(userInput: true)
                 }) {
                     Text("Prime")
                 }
                 
                 Button(action: {
                     // Check user input
+                    checkAnswer(userInput: false)
                 }) {
                     Text("Not Prime")
                 }
@@ -61,6 +64,20 @@ struct ContentView: View {
         
         // Return prime if not
         return true
+    }
+    
+    // Check if user's input is correct
+    func checkAnswer(userInput: Bool) {
+        
+        // Check users' input with the isPrime func and return true or false
+        isGuessCorrect = (userInput == isPrime(currentNum))
+        
+        // Increases guess count for final scoring based off result
+        if isGuessCorrect {
+            correctGuesses += 1
+        } else {
+            wrongGuesses += 1
+        }
     }
 }
 
