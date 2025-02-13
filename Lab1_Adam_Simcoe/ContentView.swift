@@ -39,6 +39,7 @@ struct ContentView: View {
             
             Image(systemName: isGuessCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                 .foregroundColor(isGuessCorrect ? .green : .red)
+                .opacity(showResult ? 1 : 0)
         }
         
         // calls timer to start when view appears
