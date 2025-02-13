@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var showScore = false
     @State private var isGuessCorrect = false
     @State private var timer: Timer?
+    @State private var showResult = false
     
     var body: some View {
         VStack {
@@ -36,7 +37,8 @@ struct ContentView: View {
                 }
             }
             
-            // Checkmark here
+            Image(systemName: isGuessCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .foregroundColor(isGuessCorrect ? .green : .red)
         }
         
         // calls timer to start when view appears
@@ -89,6 +91,9 @@ struct ContentView: View {
             wrongGuesses += 1
         }
         
+        // Show checkmark or x mark
+        showResult = true
+        
         // Runs next num func
         nextNum()
     }
@@ -104,6 +109,12 @@ struct ContentView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 // Generates new random num from 1 to 100
                 currentNum = Int.random(in: 1...100)
+                
+                // Hides checkmark or x mark
+                showResult = false
+                
+                // Restarts timer
+                startTimer()
             }
         }
     }
@@ -117,8 +128,12 @@ struct ContentView: View {
             
             // Incrememnts wrong guess count by 1 if no user input
             wrongGuesses += 1
+            
             // Sets guess to incorrect if no input is given
             isGuessCorrect = false
+            
+            // Displays x mark
+            showResult = true
             
             // Runs next num func
             nextNum()
@@ -143,6 +158,9 @@ struct ContentView: View {
         
         // Sets up new random num
         currentNum = Int.random(in: 1...100)
+        
+        // Hides checkmark or x mark
+        showResult = false
         
         // Starts the timer again
         startTimer()
