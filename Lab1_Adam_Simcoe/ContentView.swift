@@ -30,6 +30,11 @@ struct ContentView: View {
                     checkAnswer(userInput: true)
                 }) {
                     Text("Prime")
+                        .font(.system(size: 60, weight: .semibold))
+                        .frame(width: 250, height: 100)
+                        .background(isGuessAllowed ? Color.purple : Color.gray)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
                 // Disable user input after button is pressed
                 .disabled(!isGuessAllowed)
