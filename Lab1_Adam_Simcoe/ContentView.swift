@@ -43,5 +43,24 @@ struct ContentView: View {
             )
         }
     }
+    
+    // Check if the current number is prime or not prime
+    func isPrime(_ num: Int) -> Bool {
+        
+        // Returns not prime to numbers <= 1
+        guard num > 1 else { return false }
+        
+        // Loop from 2 to the current num - 1
+        for i in 2..<num {
+            // Check to see if num is divisible by any number in range
+            if num % i == 0 {
+                // if divisible, return not prime
+                return false
+            }
+        }
+        
+        // Return prime if not
+        return true
+    }
 }
 
