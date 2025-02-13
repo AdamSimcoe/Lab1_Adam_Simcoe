@@ -78,6 +78,24 @@ struct ContentView: View {
         } else {
             wrongGuesses += 1
         }
+        
+        // Runs next num func
+        nextNum()
+    }
+    
+    // Changes to the next number if attempts have not reached 10
+    func nextNum() {
+        attempts += 1
+        
+        // Displays final score if 10 attempts have passed
+        if attempts == 10 {
+            showScore = true
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                // Generates new random num from 1 to 100
+                currentNum = Int.random(in: 1...100)
+            }
+        }
     }
 }
 
