@@ -4,15 +4,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    // State Vars
     
+    // Random num between 1 and 100
     @State private var currentNum = Int.random(in: 1...100)
+    
+    // Correct guesses counter
     @State private var correctGuesses = 0
+    
+    // Incorrect guesses counter
     @State private var wrongGuesses = 0
+    
+    // Attempts counter
     @State private var attempts = 0
+    
+    // Final score visibility
     @State private var showScore = false
+    
+    // Track whether the current guess was correct or incorrect
     @State private var isGuessCorrect = false
+    
+    // 5s timer
     @State private var timer: Timer?
+    
+    // Checkmark / x mark visibility
     @State private var showResult = false
+    
+    // Disables userr input between answer checks
     @State private var isGuessAllowed = true
     
     var body: some View {
