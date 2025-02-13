@@ -1,5 +1,6 @@
 // Created by Adam Simcoe - 101442161
 // Last Updated on February 12th, 2025
+// COMP 3097 - Lab Test Assignment 1
 
 import SwiftUI
 
