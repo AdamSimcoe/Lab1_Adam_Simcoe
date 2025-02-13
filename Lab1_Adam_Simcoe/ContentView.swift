@@ -52,7 +52,7 @@ struct ContentView: View {
                         .frame(width: 250, height: 100)
                         // Changes button colour to gray if user input is disabled
                         .background(isGuessAllowed ? Color.purple : Color.gray)
-                        .foregroundColor(isGuessAllowed ? Color.white : Color.red)
+                        .foregroundColor(isGuessAllowed ? Color.white : Color.yellow)
                         .cornerRadius(20)
                 }
                 // Disable user input after button is pressed
@@ -68,7 +68,7 @@ struct ContentView: View {
                         .frame(width: 250, height: 100)
                         // Changes button colour to gray if user input is disabled
                         .background(isGuessAllowed ? Color.purple : Color.gray)
-                        .foregroundColor(isGuessAllowed ? Color.white : Color.red)
+                        .foregroundColor(isGuessAllowed ? Color.white : Color.yellow)
                         .cornerRadius(20)
                 }
                 // Disable user input after button is pressed
@@ -129,6 +129,9 @@ struct ContentView: View {
         
         // Temporarily stop timer
         stopTimer()
+        
+        // Disable user input
+        isGuessAllowed = false
         
         // Check users' input with the isPrime func and return true or false
         isGuessCorrect = (userInput == isPrime(currentNum))
