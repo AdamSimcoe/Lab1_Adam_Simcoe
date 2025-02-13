@@ -19,6 +19,8 @@ struct ContentView: View {
         VStack(spacing: 40) {
             
             Text("\(currentNum)")
+                .font(.system(size: 80, weight: .bold))
+                .padding()
             
             VStack(spacing: 20) {
                 
