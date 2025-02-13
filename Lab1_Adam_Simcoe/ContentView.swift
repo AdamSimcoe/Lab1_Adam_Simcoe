@@ -34,7 +34,7 @@ struct ContentView: View {
                         .frame(width: 250, height: 100)
                         // Changes button colour to gray if user input is disabled
                         .background(isGuessAllowed ? Color.purple : Color.gray)
-                        .foregroundColor(.white)
+                        .foregroundColor(isGuessAllowed ? Color.white : Color.red)
                         .cornerRadius(20)
                 }
                 // Disable user input after button is pressed
