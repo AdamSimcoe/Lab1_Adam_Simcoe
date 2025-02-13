@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var attempts = 0
     @State private var showScore = false
     @State private var isGuessCorrect = false
+    @State private var timer: Timer?
     
     var body: some View {
         VStack {
@@ -36,6 +37,11 @@ struct ContentView: View {
             }
             
             // Checkmark here
+        }
+        
+        // calls timer to start when view appears
+        .onAppear {
+            startTimer()
         }
         
         .alert(isPresented: $showScore) {
@@ -96,6 +102,29 @@ struct ContentView: View {
                 currentNum = Int.random(in: 1...100)
             }
         }
+    }
+    
+    func startTimer() {
+        // Ensures no duplicate timers are occuring
+        stopTimer()
+        
+        // Sets up timer with 5s interval
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
+            
+            // Incrememnts wrong guess count by 1 if no user input
+            wrongGuesses += 1
+            // Sets guess to incorrect if no input is given
+            isGuessCorrect = false
+            
+            // Runs next num func
+            nextNum()
+        }
+    }
+    
+    // Stops the timer
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
 
