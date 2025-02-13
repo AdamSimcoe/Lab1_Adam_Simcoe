@@ -44,11 +44,15 @@ struct ContentView: View {
             startTimer()
         }
         
+        // Alert to print final score after 10 attempts
         .alert(isPresented: $showScore) {
             Alert(
                 title: Text("Your Score:"),
                 message: Text("Correct Guesses: \(correctGuesses)\nWrong Guesses: \(wrongGuesses)"),
-                dismissButton: .default(Text("Ok"))
+                dismissButton: .default(Text("Ok")) {
+                    // Reset game after user input
+                    resetGame()
+                }
             )
         }
     }
@@ -125,6 +129,23 @@ struct ContentView: View {
     func stopTimer() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    // Resets the game
+    func resetGame() {
+        // Stops any timers
+        stopTimer()
+        
+        // Resets guesses and attempts to 0
+        correctGuesses = 0
+        wrongGuesses = 0
+        attempts = 0
+        
+        // Sets up new random num
+        currentNum = Int.random(in: 1...100)
+        
+        // Starts the timer again
+        startTimer()
     }
 }
 
