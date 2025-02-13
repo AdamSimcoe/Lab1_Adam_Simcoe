@@ -13,6 +13,23 @@ struct ContentView: View {
     var body: some View {
         VStack {
             
+            Text("\(currentNum)")
+            
+            VStack {
+                
+                // Prime Button
+                Button(action: {
+                    // Check user input
+                }) {
+                    Text("Prime")
+                }
+                
+                Button(action: {
+                    // Check user input
+                }) {
+                    Text("Not Prime")
+                }
+            }
         }
     }
 }
