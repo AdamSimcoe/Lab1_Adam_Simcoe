@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var isGuessCorrect = false
     @State private var timer: Timer?
     @State private var showResult = false
+    @State private var isGuessAllowed = true
     
     var body: some View {
         VStack {
@@ -28,6 +29,8 @@ struct ContentView: View {
                 }) {
                     Text("Prime")
                 }
+                // Disable user input after button is pressed
+                .disabled(!isGuessAllowed)
                 
                 Button(action: {
                     // Check user input
@@ -35,8 +38,11 @@ struct ContentView: View {
                 }) {
                     Text("Not Prime")
                 }
+                // Disable user input after button is pressed
+                .disabled(!isGuessAllowed)
             }
             
+            // Display checkmark or x mark based on user's input
             Image(systemName: isGuessCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                 .foregroundColor(isGuessCorrect ? .green : .red)
                 .opacity(showResult ? 1 : 0)
@@ -82,6 +88,12 @@ struct ContentView: View {
     // Check if user's input is correct
     func checkAnswer(userInput: Bool) {
         
+        // Prevent multiple inputs
+        guard isGuessAllowed else { return }
+        
+        // Temporarily stop timer
+        stopTimer()
+        
         // Check users' input with the isPrime func and return true or false
         isGuessCorrect = (userInput == isPrime(currentNum))
         
@@ -114,6 +126,9 @@ struct ContentView: View {
                 // Hides checkmark or x mark
                 showResult = false
                 
+                //Re-allows user input
+                isGuessAllowed = true
+                
                 // Restarts timer
                 startTimer()
             }
@@ -127,8 +142,14 @@ struct ContentView: View {
         // Sets up timer with 5s interval
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
             
+            //Allows only one guess per 5s interval
+            guard isGuessAllowed else { return }
+            
             // Incrememnts wrong guess count by 1 if no user input
             wrongGuesses += 1
+            
+            // Disables input
+            isGuessAllowed = false
             
             // Sets guess to incorrect if no input is given
             isGuessCorrect = false
@@ -162,6 +183,9 @@ struct ContentView: View {
         
         // Hides checkmark or x mark
         showResult = false
+        
+        // Re-allows user input
+        isGuessAllowed = true
         
         // Starts the timer again
         startTimer()
