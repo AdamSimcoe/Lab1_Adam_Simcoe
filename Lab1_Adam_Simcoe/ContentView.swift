@@ -16,11 +16,11 @@ struct ContentView: View {
     @State private var isGuessAllowed = true
     
     var body: some View {
-        VStack {
+        VStack(spacing: 40) {
             
             Text("\(currentNum)")
             
-            VStack {
+            VStack(spacing: 20) {
                 
                 // Prime Button
                 Button(action: {
